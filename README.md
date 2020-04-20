@@ -1,36 +1,33 @@
-HoDoor is an access control board that uses RFID (13.56MHz) to authenticate users e.g. to enter restricted areas. The firmware repository can be found [here]() (to be released).
+# Buzzer 2.0
 
-The work is release as is without any warranties or guarantees. Use on your own risk.
+**Buzzers have not been upgraded to 2.0 yet!**
 
-## License
+This is the repository for the the hardware of the internal buzzer system at the CoMakingSpace. The old 1.0 version worked ~~great~~ well enough, but had some functionality limitations such as cumbersome firmware updates and outdated MiFare classic implementation.
+The security element is not as important for the indoor system, but nice to have.
 
-Designed by Patrick Kübler (except for Adafruit PN532 Shield part). Creative Commons Attribution/Share-Alike.
+For software implementation details go to the dedicated software repo (**ToDo** add link).
 
-### Adafruit PN532 RFID/NFC Shield for Arduino
+## Changes from version 1.0
 
-The NFC part of the board is based upon the Adafruit PN532 RFID/NFC Shield for Arduino. The design files can be found in the according [repository](https://github.com/adafruit/Adafruit-PN532-RFID-NFC-Shield) and the board can be purchased from [Adafruit](https://www.adafruit.com/product/789).
-
-Following changes were made from the Adafruit design:
-* Moved pinheader around (no Arduino Shield compatebility anymore)
-* Moved some components and routing
-* removed LED power indicator
-* no prototyping area
-* removed 3.3V regulator (handled by the HoDoor board)
-
-**README from Adafruit PN532 Shield**
-
->We've taken our popular Adafruit PN532 breakout board and turned it into a shield - the perfect tool for any 13.56MHz RFID or NFC application. The Adafruit NFC shield uses the PN532 chip-set (the most popular NFC chip on the market) and is what is embedded in pretty much every phone or device that does NFC. It can pretty much do it all, such as read and write to tags and cards, communicate with phones (say for payment processing), and 'act' like a NFC tag. If you want to do any sort of embedded NFC work, this is the chip you'll want to use!
-
->These are the Eagle CAD files for the Adafruit PN532 RFID/NFC Shield for Arduino:
-
->* http://www.adafruit.com/products/789
-
->License
-
->Adafruit invests time and resources providing this open source design, please support Adafruit and open-source hardware by purchasing products from Adafruit!
-
->All text above must be included in any redistribution
-
->Designed by Limor Fried/Ladyada and Kevin Townsend for Adafruit Industries. Creative Commons Attribution/Share-Alike, all text above must be included in any redistribution. See license.txt for additional information.
+* Switch to ESP32 module for future BLE implementations
+  * much better security features and OTA possibility
+  * MicroPython support
+* Ditching the additional PN532 module for an in board implementation
+  * larger antenna *should* allow for better range
+  * MiFare Desfire EV1 support
+* buck converter with input protection
+  * 5-17V input (as long as the buzzer still activates)
+* **RGB LEDs!**
+* Case-entry contacts
+* single board design
 
 
+## Cloning repo
+
+`git clone --recurse-submodules ....`
+
+## Subcircuits
+
+### PN532
+
+The schematic and and layout were closely taken from Adafruit's PN532 v1.6 breakout board. The component values of the antenna matching circuit may need to be adjusted once the boards are assembled in case the resonance frequency deviated strongly from the standard 13.56MHz.
