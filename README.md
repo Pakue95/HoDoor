@@ -3,11 +3,14 @@ HoDoor is an access control board that uses RFID (13.56MHz) to authenticate user
 <img src="Graphics/HoDoor_Front.png" width="400">
 
 ## ToDo
-* generate new images of version 2.1
 * generate Gerber files
 * generate new 3d STEP files
+* update case-files to v2.1
 
 The work is release as is without any warranties or guarantees. Use on your own risk.
+
+## Hardware
+<img src="Graphics/Hardware_Overview.png">
 
 ## License
 
